@@ -24,15 +24,15 @@ const Hero = () => {
             <p className="text-primary font-medium mb-4 tracking-wide">Hello, I'm</p>
             
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6">
-              <span className="text-foreground">KNOW</span>
+              <span className="text-foreground">Somtochukwu</span>
               <br />
-              <span className="text-gradient">MIMI</span>
+              <span className="text-gradient">Onodingene</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-lg mb-8 leading-relaxed">
               <span className="font-semibold text-foreground">Passion Beyond Code</span>
               <br />
-              Full-stack developer & product builder crafting innovative fintech and healthcare solutions. 
+              Full-stack developer & product builder crafting innovative fintech solutions.
               From Lagos to the world, I build apps that make a difference.
             </p>
 
@@ -80,12 +80,6 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-pink-dark/40 to-transparent" />
               </div>
 
-              {/* Floating Badge */}
-              <div className="absolute -bottom-4 -left-4 bg-background rounded-xl p-4 shadow-card border border-border">
-                <p className="text-xs text-muted-foreground">Currently at</p>
-                <p className="font-semibold text-primary">Pan Atlantic University</p>
-                <p className="text-sm text-foreground">B.Sc Computer Science</p>
-              </div>
             </div>
           </div>
         </div>

@@ -6,7 +6,25 @@ import circlepayImg from "@/assets/project-circlepay.jpg";
 import careconnectImg from "@/assets/project-careconnect.jpg";
 import dentupImg from "@/assets/project-dentup.jpg";
 
-const projectsData = {
+interface ProjectData {
+  title: string;
+  subtitle: string;
+  image: string;
+  liveLink?: string;
+  description: string;
+  problem: string;
+  features: string[];
+  tech: string[];
+  screenshots: string[];
+  learnings: string[];
+  impact: string;
+}
+
+interface ProjectsData {
+  [key: string]: ProjectData;
+}
+
+const projectsData: ProjectsData = {
   circlepay: {
     title: "CirclePay",
     subtitle: "Digitizing Nigerian Group Savings",
@@ -36,64 +54,58 @@ const projectsData = {
     impact: "Enabled over 10 students to save capital for entrepreneurship ventures",
   },
   careconnect: {
-    title: "CareConnect",
-    subtitle: "Connecting Hearts, Changing Lives",
+    title: "Supamart",
+    subtitle: "We put the 'super' in supermarkets",
     image: careconnectImg,
-    description: `CareConnect is a web platform designed to bridge the gap between generous donors and verified NGOs. 
-    The platform ensures transparency in charitable giving by providing real-time donation tracking and impact metrics.`,
-    problem: `Many potential donors are hesitant to give to NGOs due to lack of transparency about how their contributions are used. 
-    This disconnect leads to reduced funding for legitimate organizations doing important work.`,
+    description: `Every morning, millions of small shop owners like Mama Tobi lose money — not because customers don't buy, but because they don't know what's selling.`,
+    problem: `SupaMart is a mobile-first AI assistant that brings supermarket-level automation to small retailers.`,
     features: [
-      "Verified NGO profiles with documentation",
-      "Real-time donation tracking",
-      "Impact metrics and reporting",
-      "Secure payment processing",
-      "Donor dashboard for contribution history",
-      "NGO analytics for fundraising optimization",
+      "AI-powered sales forecasting",
+      "Automated inventory management",
+      "Personalized product recommendations",   
     ],
-    tech: ["React.js", "Node.js", "Express", "MongoDB", "JWT", "Payment Gateway"],
-    screenshots: [careconnectImg],
+    tech: ["React Native", "Node.js", "Express", "SQLite", "JWT"],
+    screenshots: [careconnectImg, careconnectImg],
     learnings: [
       "Building trust through UI/UX design",
-      "Implementing secure payment flows",
+      "Implementing secure artificial intelligence algorithms",
       "Working with NoSQL databases at scale",
       "Creating data visualization dashboards",
       "Understanding nonprofit sector needs",
     ],
-    impact: "Connecting donors with verified NGOs for transparent charitable giving",
+    impact: "Building the future of B2B supermarket supply chain in Africa",
   },
   dentup: {
-    title: "Dent Up",
-    subtitle: "Modern Dental Practice Management",
+    title: "PatrickandJummys",
+    subtitle: "Bakery e-commerce website",
     image: dentupImg,
-    description: `Dent Up is a comprehensive web application designed for dental clinics to streamline their operations. 
-    From appointment scheduling to patient records management, it provides a complete solution for modern dental practices.`,
-    problem: `Many dental clinics still rely on paper-based systems or disconnected software solutions, 
-    leading to inefficiencies, scheduling conflicts, and difficulty tracking patient history.`,
+    liveLink: "https://www.patrickandjummys.net/",
+    description: `PatrickandJummys is an e-commerce website for a bakery business that offers a wide range of delicious baked goods.`,
+    problem: `The bakery needed an online platform to showcase their products, manage orders, and provide a seamless shopping experience for customers.`,
     features: [
-      "Patient records management",
-      "Appointment scheduling system",
-      "Treatment history tracking",
-      "Automated appointment reminders",
-      "Staff schedule management",
-      "Billing and invoice generation",
+      "User-friendly product catalog with categories",
+      "Secure user authentication and profiles",
+      "Shopping cart and checkout process",
+      "Order management system for admins",
+      "Payment gateway integration",
+      "Responsive design for mobile and desktop",
     ],
     tech: ["React", "Node.js", "Express", "Database", "REST API", "Authentication"],
     screenshots: [dentupImg],
     learnings: [
-      "Understanding healthcare domain requirements",
-      "Building HIPAA-aware applications",
-      "Designing intuitive scheduling interfaces",
-      "Managing complex relational data",
-      "Implementing role-based access control",
+      "Building a full-stack e-commerce application",
+      "Implementing secure user authentication",
+      "Designing responsive UI for various devices",
+      "Integrating payment gateways",
+      "Managing product inventory and orders",
     ],
-    impact: "Enabling efficient client record and appointment management for dental clinics",
+    impact: "Increased bakery sales by 30% within the first three months of launch",
   },
 };
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const project = projectsData[id as keyof typeof projectsData];
+  const project = id ? projectsData[id] : undefined;
 
   if (!project) {
     return (
@@ -112,7 +124,6 @@ const ProjectDetail = () => {
     <main className="min-h-screen bg-background">
       <Navbar />
 
-      {/* Hero Section */}
       <section className="pt-24 pb-12 bg-hero">
         <div className="container mx-auto px-6">
           <Link
@@ -133,12 +144,15 @@ const ProjectDetail = () => {
               <p className="text-muted-foreground leading-relaxed mb-8">{project.description}</p>
 
               <div className="flex flex-wrap gap-4">
-                <Button variant="hero" size="lg" asChild>
-                  <a href="#" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink size={18} />
-                    Live Demo
-                  </a>
-                </Button>
+                {project.liveLink && (
+                  <Button variant="hero" size="lg" asChild>
+                    <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink size={18} />
+                      Live Demo
+                    </a>
+                  </Button>
+                )}
+                
                 <Button variant="outline" size="lg" asChild>
                   <a href="https://github.com/Onodingene" target="_blank" rel="noopener noreferrer">
                     <Github size={18} />
@@ -162,7 +176,6 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Problem Section */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
@@ -177,7 +190,6 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
@@ -204,7 +216,6 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Tech Stack Section */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
@@ -228,7 +239,6 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Learnings Section */}
       <section className="py-16 bg-hero">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
@@ -249,7 +259,6 @@ const ProjectDetail = () => {
               ))}
             </ul>
 
-            {/* Impact */}
             <div className="mt-12 p-6 bg-card rounded-2xl border border-border shadow-soft">
               <p className="text-sm text-primary font-medium mb-2">Impact</p>
               <p className="text-lg font-semibold text-foreground">{project.impact}</p>
@@ -258,7 +267,6 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-6 text-center">
           <h3 className="font-display text-2xl md:text-3xl font-bold mb-4">

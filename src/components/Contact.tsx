@@ -76,9 +76,6 @@ const Contact = () => {
 
         {/* Footer */}
         <div className="text-center pt-8 border-t border-border">
-          <p className="text-muted-foreground flex items-center justify-center gap-2">
-            Made with <Heart className="text-primary fill-primary" size={16} /> by Mimi
-          </p>
           <p className="text-sm text-muted-foreground mt-2">
             © 2025 Onodingene Somtochukwu. All rights reserved.
           </p>
